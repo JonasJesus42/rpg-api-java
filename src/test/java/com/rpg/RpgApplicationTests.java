@@ -8,7 +8,6 @@ class RpgApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("aiai papi");
 	}
 
 }
