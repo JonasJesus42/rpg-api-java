@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,7 +46,10 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<Page<UserModel>> getAllUsers(@PageableDefault Pageable pageable) {
-        var users = userService.findAll(pageable);
+        HashMap<String, Object> hashMapFilters = new HashMap<>();
+        hashMapFilters.put("active", true);
+
+        var users = userService.findAll(hashMapFilters, pageable);
 
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }

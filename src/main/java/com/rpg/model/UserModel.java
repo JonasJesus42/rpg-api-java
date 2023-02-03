@@ -1,7 +1,6 @@
 package com.rpg.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.jpa.domain.Specification;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -88,7 +87,5 @@ public class UserModel implements Serializable {
         this.email = email;
     }
 
-    public static Specification<UserModel> filterUserIsActive() {
-        return Specification.where((root, query, builder) -> builder.equal(root.get("active"), true));
-    }
+
 }

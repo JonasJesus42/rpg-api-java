@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,8 +30,8 @@ public class UserService {
         return userRepository.existsByEmail(email);
     }
 
-    public Page<UserModel> findAll(Pageable pageable) {
-        return userRepository.findAll(UserModel.filterUserIsActive(), pageable);
+    public Page<UserModel> findAll(HashMap<String, Object> filters, Pageable pageable) {
+        return userRepository.findAll(UserRepository.filter(filters), pageable);
     }
 
     public Optional<UserModel> findById(UUID id) {
