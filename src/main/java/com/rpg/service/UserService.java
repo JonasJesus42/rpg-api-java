@@ -7,10 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 
 @Service
@@ -32,17 +30,16 @@ public class UserService {
     }
 
     public Page<UserModel> findAll(Pageable pageable) {
-        return userRepository.findAll(pageable);
+        return userRepository.findAll(UserModel.filterUserIsActive(), pageable);
     }
 
     public Optional<UserModel> findById(UUID id) {
-        return userRepository.findById(id);
+        var user = userRepository.findById(id);
+        return user.filter(UserModel::isActive);
     }
 
     @Transactional
     public void delete(UserModel userModel) {
         userRepository.save(userModel);
     }
-
-
 }
