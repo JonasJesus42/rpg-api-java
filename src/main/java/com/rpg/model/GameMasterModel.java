@@ -21,7 +21,7 @@ public class GameMasterModel {
     private String gameName;
 
     @Column(name = "player")
-    private Player player;
+    private PlayerModel player;
 
     @Column(name = "user", nullable = false)
     private  UserModel user;
@@ -50,11 +50,11 @@ public class GameMasterModel {
         this.gameName = gameName;
     }
 
-    public Player getPlayer() {
+    public PlayerModel getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(PlayerModel player) {
         this.player = player;
     }
 
