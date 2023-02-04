@@ -41,7 +41,7 @@ public class UserModel implements Serializable {
     }
 
     @Column(name = "gameMaster")
-    private GameMaster gameMaster;
+    private GameMasterModel gameMaster;
 
     @Column(nullable = false)
     private boolean active;
@@ -54,11 +54,11 @@ public class UserModel implements Serializable {
         this.birthday = birthday;
     }
 
-    public GameMaster getGameMaster() {
+    public GameMasterModel getGameMaster() {
         return gameMaster;
     }
 
-    public void setGameMaster(GameMaster gameMaster) {
+    public void setGameMaster(GameMasterModel gameMaster) {
         this.gameMaster = gameMaster;
     }
 
