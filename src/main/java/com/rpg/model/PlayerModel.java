@@ -13,20 +13,27 @@ public class PlayerModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "playerName")
-    private String playerName;
-
     @Column(name = "race", nullable = false)
     private RaceModel race;
 
     @Column(name = "class", nullable = false)
     private ClassCharacterModel classCharacter;
 
-    @Column(name = "lavel", nullable = false, length = 2)
-    private int lavel;
+    @Column(name = "equipment")
+    private EquipmentModel equipment;
+
+    @Column(name = "status")
+    private StatusModel status;
+
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "playerName")
+    private String playerName;
+
+    @Column(name = "level", nullable = false, length = 2)
+    private int level;
 
     @Column(name = "exp", nullable = false, length = 7)
     private int exp;
@@ -36,9 +43,6 @@ public class PlayerModel {
 
     @Column(name = "alignment")
     private String alignment;
-
-    @Column(name = "status")
-    private StatusModel status;
 
     @Column(name = "proficiencyBonus", length = 3)
     private int proficiencyBonus;
@@ -82,9 +86,6 @@ public class PlayerModel {
     @Column(name = "otherProficienciesAndLanguages")
     private String otherProficienciesAndLanguages;
 
-    @Column(name = "equipment")
-    private EquipmentModel equipment;
-
     public UUID getId() {
         return id;
     }
@@ -125,12 +126,12 @@ public class PlayerModel {
         this.classCharacter = classCharacter;
     }
 
-    public int getLavel() {
-        return lavel;
+    public int getLevel() {
+        return level;
     }
 
-    public void setLavel(int lavel) {
-        this.lavel = lavel;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getExp() {
