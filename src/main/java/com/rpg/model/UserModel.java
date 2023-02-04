@@ -32,6 +32,12 @@ public class UserModel implements Serializable {
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
 
+    @Column(name = "gameMaster")
+    private GameMasterModel gameMaster;
+
+    @Column(nullable = false)
+    private boolean active;
+
     public String getNickname() {
         return nickname;
     }
@@ -39,12 +45,6 @@ public class UserModel implements Serializable {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-
-    @Column(name = "gameMaster")
-    private GameMasterModel gameMaster;
-
-    @Column(nullable = false)
-    private boolean active;
 
     public Date getBirthday() {
         return birthday;
