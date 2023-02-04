@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -15,17 +16,51 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "last_name", nullable = false)
+
+    @Column(name = "lastname", nullable = false)
     private String lastname;
-    @Column(name = "age", nullable = false, length = 3)
-    private Integer age;
+
+    @Column(name = "nickname", nullable = false, unique = true)
+    private String nickname;
+
+    @Column(name = "birthday", nullable = false)
+    private Date birthday;
+
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    @Column(name = "gameMaster")
+    private GameMaster gameMaster;
+
     @Column(nullable = false)
     private boolean active;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public GameMaster getGameMaster() {
+        return gameMaster;
+    }
+
+    public void setGameMaster(GameMaster gameMaster) {
+        this.gameMaster = gameMaster;
+    }
 
     @Column(nullable = false)
     private LocalDateTime registerDate;
@@ -69,14 +104,6 @@ public class UserModel implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getEmail() {
