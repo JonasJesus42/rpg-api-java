@@ -1,16 +1,43 @@
 package com.rpg.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Table(name = "tb_race", schema = "rpg_generator")
+@Entity
 public class RaceModel {
-    @Column(name = "nameRace")
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @OneToOne
+    @JoinColumn(name = "id_player")
+    private PlayerModel player;
+
+    @Column(name = "name_race")
     private String nameRace;
 
-    @Column(name = "selectedRace", insertable = false, updatable = false)
+    @Column(name = "selected_race", insertable = false, updatable = false)
     private Boolean selectedRace;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+        this.player = player;
+    }
 
     public String getNameRace() {
         return nameRace;

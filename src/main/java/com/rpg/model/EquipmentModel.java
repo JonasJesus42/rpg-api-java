@@ -1,10 +1,21 @@
 package com.rpg.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Table(name = "tb_equipment", schema = "rpg_generator")
+@Entity
 public class EquipmentModel {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @OneToOne(mappedBy = "equipment")
+    private PlayerModel player;
 
     @Column(name = "copperPoints", length = 4)
     private int copperPoints;
@@ -59,5 +70,21 @@ public class EquipmentModel {
 
     public void setPlatinumPoints(int platinumPoints) {
         this.platinumPoints = platinumPoints;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+        this.player = player;
     }
 }
