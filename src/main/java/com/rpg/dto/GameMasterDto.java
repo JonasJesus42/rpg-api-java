@@ -1,21 +1,15 @@
 package com.rpg.dto;
 
+import com.rpg.model.UserModel;
 import jakarta.validation.constraints.NotBlank;
 
 public class GameMasterDto {
 
     @NotBlank
-    private String name;
-
     private String gameName;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @NotBlank
+    private UserModel userId;
 
     public String getGameName() {
         return gameName;
@@ -23,5 +17,13 @@ public class GameMasterDto {
 
     public void setGameName(String gameName) {
         this.gameName = gameName;
+    }
+
+    public UserModel getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UserModel userId) {
+        this.userId = userId;
     }
 }
