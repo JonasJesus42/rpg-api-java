@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,12 +17,22 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @OneToMany(mappedBy = "user")
+    private List<GameMasterModel> gameMasters;
+
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "last_name", nullable = false)
+
+    @Column(name = "lastname", nullable = false)
     private String lastname;
-    @Column(name = "age", nullable = false, length = 3)
-    private Integer age;
+
+    @Column(name = "nickname", nullable = false, unique = true)
+    private String nickname;
+
+    @Column(name = "birthday", nullable = false)
+    private Date birthday;
+
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
 
@@ -29,6 +41,30 @@ public class UserModel implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime registerDate;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public List<GameMasterModel> getGameMasters() {
+        return gameMasters;
+    }
+
+    public void setGameMasters(List<GameMasterModel> gameMasters) {
+        this.gameMasters = gameMasters;
+    }
 
     public boolean isActive() {
         return active;
@@ -71,14 +107,6 @@ public class UserModel implements Serializable {
         this.lastname = lastname;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -86,6 +114,5 @@ public class UserModel implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
+    
 }
