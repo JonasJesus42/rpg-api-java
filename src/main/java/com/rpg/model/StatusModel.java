@@ -1,10 +1,20 @@
 package com.rpg.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-@Table
+import java.util.UUID;
+
+@Table(name = "tb_status", schema = "rpg_generator")
+@Entity
 public class StatusModel {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @OneToOne(mappedBy = "status")
+    private PlayerModel player;
 
     @Column(name = "nameStatus")
     private String nameStatus;
@@ -27,5 +37,20 @@ public class StatusModel {
     public void setSelectedStatus(Boolean selectedStatus) {
         this.selectedStatus = selectedStatus;
     }
-}
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public PlayerModel getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerModel player) {
+        this.player = player;
+    }
+}

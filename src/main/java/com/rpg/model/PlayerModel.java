@@ -2,6 +2,7 @@ package com.rpg.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -13,23 +14,30 @@ public class PlayerModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "race", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "race_id")
     private RaceModel race;
 
-    @Column(name = "class", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "class_id")
     private ClassCharacterModel classCharacter;
 
-    @Column(name = "equipment")
+    @OneToOne
+    @JoinColumn(name = "equipment_id")
     private EquipmentModel equipment;
 
-    @Column(name = "status")
+    @ManyToOne
+    @JoinColumn(name = "status_id")
     private StatusModel status;
 
+    @ManyToOne
+    @JoinColumn(name = "game_master_id")
+    private GameMasterModel gameMaster;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "playerName")
+    @Column(name = "player_name")
     private String playerName;
 
     @Column(name = "level", nullable = false, length = 2)
@@ -44,31 +52,31 @@ public class PlayerModel {
     @Column(name = "alignment")
     private String alignment;
 
-    @Column(name = "proficiencyBonus", length = 3)
+    @Column(name = "proficiency_bonus", length = 3)
     private int proficiencyBonus;
 
     @Column(name = "inspiration", length = 3)
     private int inspiration;
 
-    @Column(name = "armorClass", length = 3)
+    @Column(name = "armor_class", length = 3)
     private int armorClass;
 
     @Column(name = "initiative", length = 3)
     private int initiative;
 
-    @Column(name = "passiveWisdom", length = 3)
+    @Column(name = "passive_wisdom", length = 3)
     private int passiveWisdom;
 
     @Column(name = "speed", length = 3)
     private int speed;
 
-    @Column(name = "currentHitPoints", length = 3)
+    @Column(name = "current_hit_points", length = 3)
     private int currentHitPoints;
 
-    @Column(name = "hitDice")
+    @Column(name = "hit_dice")
     private int hitDice;
 
-    @Column(name = "personalityTraits")
+    @Column(name = "personality_traits")
     private String personalityTraits;
 
     @Column(name = "ideals")
@@ -80,10 +88,10 @@ public class PlayerModel {
     @Column(name = "flaws")
     private String flaws;
 
-    @Column(name = "featuresAndTraits")
+    @Column(name = "features_and_traits")
     private String featuresAndTraits;
 
-    @Column(name = "otherProficienciesAndLanguages")
+    @Column(name = "other_proficiencies_and_languages")
     private String otherProficienciesAndLanguages;
 
     public UUID getId() {
@@ -284,5 +292,13 @@ public class PlayerModel {
 
     public void setEquipment(EquipmentModel equipment) {
         this.equipment = equipment;
+    }
+
+    public GameMasterModel getGameMaster() {
+        return gameMaster;
+    }
+
+    public void setGameMaster(GameMasterModel gameMaster) {
+        this.gameMaster = gameMaster;
     }
 }

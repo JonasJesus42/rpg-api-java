@@ -2,6 +2,7 @@ package com.rpg.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,17 +15,18 @@ public class GameMasterModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+//    @OneToMany(mappedBy = "gameMaster")
+//    private List<PlayerModel> player;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private  UserModel user;
+
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "lastname")
     private String gameName;
-
-    @Column(name = "player")
-    private PlayerModel player;
-
-    @Column(name = "user", nullable = false)
-    private  UserModel user;
 
     public UUID getId() {
         return id;
@@ -50,14 +52,6 @@ public class GameMasterModel {
         this.gameName = gameName;
     }
 
-    public PlayerModel getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(PlayerModel player) {
-        this.player = player;
-    }
-
     public UserModel getUser() {
         return user;
     }
@@ -65,4 +59,12 @@ public class GameMasterModel {
     public void setUser(UserModel user) {
         this.user = user;
     }
+
+//    public List<PlayerModel> getPlayer() {
+//        return player;
+//    }
+//
+//    public void setPlayer(List<PlayerModel> player) {
+//        this.player = player;
+//    }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +17,9 @@ public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @OneToMany(mappedBy = "user")
+    private List<GameMasterModel> gameMasters;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -32,11 +36,11 @@ public class UserModel implements Serializable {
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
 
-    @Column(name = "gameMaster")
-    private GameMasterModel gameMaster;
-
     @Column(nullable = false)
     private boolean active;
+
+    @Column(nullable = false)
+    private LocalDateTime registerDate;
 
     public String getNickname() {
         return nickname;
@@ -54,16 +58,13 @@ public class UserModel implements Serializable {
         this.birthday = birthday;
     }
 
-    public GameMasterModel getGameMaster() {
-        return gameMaster;
+    public List<GameMasterModel> getGameMasters() {
+        return gameMasters;
     }
 
-    public void setGameMaster(GameMasterModel gameMaster) {
-        this.gameMaster = gameMaster;
+    public void setGameMasters(List<GameMasterModel> gameMasters) {
+        this.gameMasters = gameMasters;
     }
-
-    @Column(nullable = false)
-    private LocalDateTime registerDate;
 
     public boolean isActive() {
         return active;
