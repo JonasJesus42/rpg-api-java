@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:15.1
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mudar1234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: rpg
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+    db_data:
