@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public Page<UserModel> findAll(HashMap<String, Object> filters, Pageable pageable) {
-        return userRepository.findAll(UserRepository.filter(filters), pageable);
+        return userRepository.filter(filters, pageable);
     }
 
     public Optional<UserModel> findById(UUID id) {
