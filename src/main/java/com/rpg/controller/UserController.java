@@ -47,7 +47,6 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<UserModel>> getAllUsers(@PageableDefault Pageable pageable) {
         HashMap<String, Object> filters = new HashMap<>();
-        filters.put("active", true);
 
         var users = userService.findAll(filters, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(users);
