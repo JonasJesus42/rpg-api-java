@@ -14,9 +14,9 @@ public class GameMasterModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
-    private  UserModel user;
+    private UserModel user;
 
     @Column(name = "game_name")
     private String gameName;

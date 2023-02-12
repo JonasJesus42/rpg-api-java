@@ -8,8 +8,6 @@ public class GameMasterDto {
     @NotBlank
     private String gameName;
 
-    @NotBlank
-    private UserModel userId;
 
     public String getGameName() {
         return gameName;
@@ -17,13 +15,5 @@ public class GameMasterDto {
 
     public void setGameName(String gameName) {
         this.gameName = gameName;
-    }
-
-    public UserModel getUserId() {
-        return userId;
-    }
-
-    public void setUserId(UserModel userId) {
-        this.userId = userId;
     }
 }

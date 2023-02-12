@@ -18,20 +18,18 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToMany(mappedBy = "user")
-    private List<GameMasterModel> gameMasters;
+    @OneToOne(mappedBy = "user")
+    @JoinColumn(name = "game_master_id")
+    private GameMasterModel gameMasters;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastname;
 
-    @Column(name = "nickname", nullable = false, unique = true)
-    private String nickname;
-
-    @Column(name = "birthday", nullable = false)
-    private Date birthday;
+    @Column(name = "age", nullable = false)
+    private Integer age;
 
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
@@ -42,27 +40,11 @@ public class UserModel implements Serializable {
     @Column(nullable = false)
     private LocalDateTime registerDate;
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public List<GameMasterModel> getGameMasters() {
+    public GameMasterModel getGameMasters() {
         return gameMasters;
     }
 
-    public void setGameMasters(List<GameMasterModel> gameMasters) {
+    public void setGameMasters(GameMasterModel gameMasters) {
         this.gameMasters = gameMasters;
     }
 
@@ -113,5 +95,13 @@ public class UserModel implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

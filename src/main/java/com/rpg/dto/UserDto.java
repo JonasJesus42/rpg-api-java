@@ -13,11 +13,8 @@ public class UserDto {
     @NotBlank
     private String lastname;
 
-    @NotBlank
-    private String nickname;
-
     @NotNull
-    private Date birthDate;
+    private Integer age;
     @NotBlank
     @Email
     private String email;
@@ -47,19 +44,11 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getNickname() {
-        return nickname;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
