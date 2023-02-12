@@ -37,7 +37,7 @@ public class UserService {
     public Optional<UserModel> findById(UUID id) {
         var user = userRepository.findById(id);
         //remove the user attribute from within gameMaster
-        user.filter(userModel -> userModel.getGameMasters() != null).ifPresent(userModel -> userModel.getGameMasters().setUser(null));
+//        user.filter(userModel -> userModel.getGameMasters() != null).ifPresent(userModel -> userModel.getGameMasters().setUser(null));
         return user;
     }
 
