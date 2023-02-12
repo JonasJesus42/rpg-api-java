@@ -19,7 +19,6 @@ public class UserModel implements Serializable {
     private UUID id;
 
     @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "game_master_id")
     private GameMasterModel gameMasters;
 
     @Column(name = "name", nullable = false)
