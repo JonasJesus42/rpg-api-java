@@ -5,18 +5,20 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
-
 public class UserDto {
-    @NotBlank
+    @NotBlank(message = "Name is required")
     private String name;
-    @NotBlank
+    @NotBlank(message = "Lastname is required")
     private String lastname;
 
-    @NotNull
+    @NotBlank(message = "Nickname is required")
+    private String nickname;
+
+    @NotNull(message = "Age is required")
     private Integer age;
-    @NotBlank
-    @Email
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email is invalid")
     private String email;
 
     public String getName() {
@@ -50,5 +52,13 @@ public class UserDto {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }
