@@ -104,6 +104,11 @@ public class UserController {
         var playerModel = new PlayersModel();
         BeanUtils.copyProperties(playerDto, playerModel);
         playerModel.setUser(userModel);
+
+        if (userModel.getPlayers().size() >= 6) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ERROR: Maximum number of players reached (6)");
+        }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(playersService.save(playerModel));
     }
 }

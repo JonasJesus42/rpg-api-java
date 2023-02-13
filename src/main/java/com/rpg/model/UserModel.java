@@ -2,6 +2,8 @@ package com.rpg.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ public class UserModel implements Serializable {
     private UUID id;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Size(max = 6)
     @JsonIgnoreProperties("user")
     private List<PlayersModel> players;
 

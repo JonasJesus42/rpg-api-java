@@ -1,6 +1,8 @@
 package com.rpg.dto;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class PlayersDto {
 
@@ -10,10 +12,10 @@ public class PlayersDto {
     @NotBlank
     private String playerName;
 
-    @NotBlank
+    @Min(value = 0)
     private int level;
 
-    @NotBlank
+    @Min(value = 0)
     private int exp;
 
     @NotBlank
@@ -22,28 +24,28 @@ public class PlayersDto {
     @NotBlank
     private String alignment;
 
-    @NotBlank
+    @Min(value = 0)
     private int proficiencyBonus;
 
-    @NotBlank
+    @Min(value = 0)
     private int inspiration;
 
-    @NotBlank
+    @Min(value = 0)
     private int armorClass;
 
-    @NotBlank
+    @Min(value = 0)
     private int initiative;
 
-    @NotBlank
+    @Min(value = 0)
     private int passiveWisdom;
 
-    @NotBlank
+    @Min(value = 0)
     private int speed;
 
-    @NotBlank
+    @Min(value = 0)
     private int currentHitPoints;
 
-    @NotBlank
+    @Min(value = 0)
     private int hitDice;
 
     @NotBlank
