@@ -1,8 +1,10 @@
 package com.rpg.controller;
 
+import com.rpg.dto.PlayersDto;
 import com.rpg.dto.UserDto;
+import com.rpg.model.PlayersModel;
 import com.rpg.model.UserModel;
-import com.rpg.repository.UserRepository;
+import com.rpg.service.PlayersService;
 import com.rpg.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -24,12 +26,11 @@ import java.util.UUID;
 @RequestMapping("/api/user")
 public class UserController {
     final UserService userService;
-    private final UserRepository userRepository;
+    private final PlayersService playersService;
 
-    public UserController(UserService userService,
-                          UserRepository userRepository) {
+    public UserController(UserService userService, PlayersService playersService) {
         this.userService = userService;
-        this.userRepository = userRepository;
+        this.playersService = playersService;
     }
 
     @PostMapping
@@ -90,5 +91,19 @@ public class UserController {
         userModel.setRegisterDate(userOptional.get().getRegisterDate());
         userModel.setActive(userOptional.get().isActive());
         return ResponseEntity.status(HttpStatus.OK).body(userService.save(userModel));
+    }
+
+    @PostMapping("/{id}/players")
+    public ResponseEntity<Object> createPlayer(@PathVariable(value = "id") UUID id, @RequestBody @Valid PlayersDto playerDto) {
+        Optional<UserModel> userOptional = userService.findById(id);
+        if(userOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT FOUND: User not found");
+        }
+
+        var userModel = userOptional.get();
+        var playerModel = new PlayersModel();
+        BeanUtils.copyProperties(playerDto, playerModel);
+        playerModel.setUser(userModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(playersService.save(playerModel));
     }
 }
