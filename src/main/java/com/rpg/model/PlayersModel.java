@@ -1,5 +1,6 @@
 package com.rpg.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 
@@ -34,6 +35,7 @@ public class PlayersModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("players")
     private UserModel user;
 
     @Column(name = "name", nullable = false)
