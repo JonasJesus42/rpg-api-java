@@ -1,10 +1,10 @@
 package com.rpg.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,14 +18,18 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToOne(mappedBy = "user")
-    private GameMasterModel gameMasters;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<PlayersModel> players;
 
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "last_name", nullable = false)
     private String lastname;
+
+    @Column(name = "nickname", unique = true)
+    private String nickname;
 
     @Column(name = "age", nullable = false)
     private Integer age;
@@ -38,14 +42,6 @@ public class UserModel implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime registerDate;
-
-    public GameMasterModel getGameMasters() {
-        return gameMasters;
-    }
-
-    public void setGameMasters(GameMasterModel gameMasters) {
-        this.gameMasters = gameMasters;
-    }
 
     public boolean isActive() {
         return active;
@@ -102,5 +98,21 @@ public class UserModel implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public List<PlayersModel> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<PlayersModel> players) {
+        this.players = players;
     }
 }
