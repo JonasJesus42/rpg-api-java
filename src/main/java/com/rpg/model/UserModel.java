@@ -2,9 +2,9 @@ package com.rpg.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.UUID;
 @Table(name = "tb_user", schema = "rpg_generator")
 public class UserModel implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
