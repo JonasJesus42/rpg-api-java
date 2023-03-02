@@ -4,12 +4,10 @@ import com.rpg.model.ClassModel;
 import com.rpg.service.ClassService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -28,4 +26,9 @@ public class ClassController {
         return new ResponseEntity<>(classes, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ClassModel> getClassById(@PathVariable("id") UUID id) {
+        ClassModel classModel = classService.findById(id).orElse(null);
+        return new ResponseEntity<>(classModel, HttpStatus.OK);
+    }
 }
