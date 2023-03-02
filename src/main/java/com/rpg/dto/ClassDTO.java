@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.rpg.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
