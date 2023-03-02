@@ -4,7 +4,6 @@ import com.rpg.dto.PlayersDto;
 import com.rpg.model.PlayersModel;
 import com.rpg.repository.PlayersRepository;
 import com.rpg.service.PlayersService;
-import com.rpg.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -14,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
 
