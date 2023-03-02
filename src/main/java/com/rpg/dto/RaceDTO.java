@@ -1,6 +1,5 @@
 package com.rpg.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 
 public class RaceDTO {

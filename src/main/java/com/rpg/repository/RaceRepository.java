@@ -1,6 +1,6 @@
 package com.rpg.repository;
 
-import com.rpg.model.PlayersModel;
+import com.rpg.model.RaceModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface PlayersRepository extends JpaRepository<PlayersModel, UUID>, JpaSpecificationExecutor<PlayersModel> {
-
+public interface RaceRepository extends JpaRepository<RaceModel, UUID>, JpaSpecificationExecutor<RaceModel> {
 }
