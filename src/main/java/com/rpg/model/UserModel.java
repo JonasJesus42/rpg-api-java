@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -33,8 +34,8 @@ public class UserModel implements Serializable {
     @Column(name = "nickname", unique = true)
     private String nickname;
 
-    @Column(name = "age", nullable = false)
-    private Integer age;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
@@ -94,14 +95,6 @@ public class UserModel implements Serializable {
         this.email = email;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getNickname() {
         return nickname;
     }
@@ -116,5 +109,13 @@ public class UserModel implements Serializable {
 
     public void setPlayers(List<PlayersModel> players) {
         this.players = players;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }
