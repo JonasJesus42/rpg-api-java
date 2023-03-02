@@ -18,24 +18,6 @@ public class PlayersModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-//    @OneToOne
-//    @JoinColumn(name = "race_id")
-//    private RaceModel race;
-//
-//    @OneToOne
-//    @JoinColumn(name = "class_id")
-//    private ClassCharacterModel classCharacter;
-//
-//    @OneToOne
-//    @JoinColumn(name = "equipment_id")
-//    private EquipmentModel equipment;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "status_id")
-//    private StatusModel status;
-//
-//    @ManyToOne
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("players")
