@@ -3,17 +3,22 @@ package com.rpg.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDate;
 
 public class UserDto {
-    @NotBlank
+    @NotBlank(message = "Name is required")
     private String name;
-    @NotBlank
+    @NotBlank(message = "Lastname is required")
     private String lastname;
-    @NotNull
-    private Integer age;
-    @NotBlank
-    @Email
+
+    @NotBlank(message = "Nickname is required")
+    private String nickname;
+
+    private LocalDate birthDate;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email is invalid")
     private String email;
 
     public String getName() {
@@ -33,19 +38,27 @@ public class UserDto {
         this.lastname = lastname;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }

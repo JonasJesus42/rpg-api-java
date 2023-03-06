@@ -1,10 +1,13 @@
 package com.rpg.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,17 +20,22 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Size(max = 6)
+    @JsonIgnoreProperties("user")
+    private List<PlayersModel> players;
+
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastname;
 
-    @Column(name = "nickname", nullable = false, unique = true)
+    @Column(name = "nickname", unique = true)
     private String nickname;
 
-    @Column(name = "birthday", nullable = false)
-    private Date birthday;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
     @Column(name = "email", nullable = false, length = 100, unique = true)
     private String email;
@@ -37,22 +45,6 @@ public class UserModel implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime registerDate;
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
 
     public boolean isActive() {
         return active;
@@ -101,5 +93,29 @@ public class UserModel implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public List<PlayersModel> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<PlayersModel> players) {
+        this.players = players;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }

@@ -36,7 +36,7 @@ public class UserService {
 
     public Optional<UserModel> findById(UUID id) {
         var user = userRepository.findById(id);
-        return user.filter(UserModel::isActive);
+        return user;
     }
 
     @Transactional
