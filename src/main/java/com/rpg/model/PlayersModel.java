@@ -3,11 +3,15 @@ package com.rpg.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_player", schema = "rpg_generator")
-public class PlayersModel {
+public class PlayersModel implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
