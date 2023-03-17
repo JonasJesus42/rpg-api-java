@@ -2,6 +2,8 @@ package com.rpg.model;
 
 import java.io.Serializable;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +15,9 @@ public class StatsModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @OneToOne(mappedBy = "statsModel", cascade = CascadeType.ALL)
+    private PlayersModel playersModel;
 
     @Column(name = "strength", nullable = false)
     private Integer strength;
@@ -38,6 +43,14 @@ public class StatsModel implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public PlayersModel getPlayersModel() {
+        return playersModel;
+    }
+
+    public void setPlayersModel(PlayersModel playersModel) {
+        this.playersModel = playersModel;
     }
 
     public Integer getStrength() {

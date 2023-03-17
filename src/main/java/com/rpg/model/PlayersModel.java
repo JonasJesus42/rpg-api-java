@@ -23,6 +23,11 @@ public class PlayersModel implements Serializable {
     @JsonIgnoreProperties("players")
     private UserModel user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stats_id")
+    @JsonIgnoreProperties("playersModel")
+    private StatsModel statsModel;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -97,6 +102,14 @@ public class PlayersModel implements Serializable {
 
     public void setUser(UserModel user) {
         this.user = user;
+    }
+
+    public StatsModel getStatsModel() {
+        return statsModel;
+    }
+
+    public void setStatsModel(StatsModel statsModel) {
+        this.statsModel = statsModel;
     }
 
     public String getName() {
