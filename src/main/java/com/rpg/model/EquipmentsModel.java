@@ -15,6 +15,9 @@ public class EquipmentsModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @OneToOne(mappedBy = "equipmentsModel")
+    private PlayersModel playersModel;
+
     @Column(name = "cp", nullable = false)
     private Number cp;
 
@@ -88,5 +91,13 @@ public class EquipmentsModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public PlayersModel getPlayersModel() {
+        return playersModel;
+    }
+
+    public void setPlayersModel(PlayersModel playersModel) {
+        this.playersModel = playersModel;
     }
 }

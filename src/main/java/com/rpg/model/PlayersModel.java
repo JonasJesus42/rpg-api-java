@@ -28,6 +28,11 @@ public class PlayersModel implements Serializable {
     @JsonIgnoreProperties("playersModel")
     private StatsModel statsModel;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "equipments_id")
+    @JsonIgnoreProperties("playersModel")
+    private EquipmentsModel equipmentsModel;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -270,5 +275,13 @@ public class PlayersModel implements Serializable {
 
     public void setOtherProficienciesAndLanguages(String otherProficienciesAndLanguages) {
         this.otherProficienciesAndLanguages = otherProficienciesAndLanguages;
+    }
+
+    public EquipmentsModel getEquipmentsModel() {
+        return equipmentsModel;
+    }
+
+    public void setEquipmentsModel(EquipmentsModel equipmentsModel) {
+        this.equipmentsModel = equipmentsModel;
     }
 }
