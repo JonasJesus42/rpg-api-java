@@ -120,4 +120,35 @@ public class PlayersController {
         playersService.save(player);
         return ResponseEntity.status(HttpStatus.CREATED).body(equipmentsService.save(equipmentsModel));
     }
+
+    @GetMapping("/{id}/equipment")
+    public ResponseEntity<Object> create(@PathVariable UUID id) {
+        Optional<PlayersModel> playerOptional = playersService.findById(id);
+        if (playerOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND: Player not found");
+        }
+
+        if (playerOptional.get().getEquipmentsModel() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND: Player has no equipments");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(playerOptional.get().getEquipmentsModel());
+    }
+
+    @PutMapping("/{id}/equipment")
+    public ResponseEntity<Object> update(@RequestBody @Valid EquipmentsDTO equipmentsDTO, @PathVariable UUID id) {
+        Optional<PlayersModel> playerOptional = playersService.findById(id);
+        if (playerOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND: Player not found");
+        }
+
+        if (playerOptional.get().getEquipmentsModel() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND: Player has no equipments");
+        }
+
+        var equipmentsModel = new EquipmentsModel();
+        equipmentsModel.setId(playerOptional.get().getEquipmentsModel().getId());
+        BeanUtils.copyProperties(equipmentsDTO, equipmentsModel);
+        return ResponseEntity.status(HttpStatus.OK).body(equipmentsService.save(equipmentsModel));
+    }
 }
