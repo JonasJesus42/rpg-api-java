@@ -23,6 +23,16 @@ public class PlayersModel implements Serializable {
     @JsonIgnoreProperties("players")
     private UserModel user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stats_id")
+    @JsonIgnoreProperties("playersModel")
+    private StatsModel statsModel;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "equipments_id")
+    @JsonIgnoreProperties("playersModel")
+    private EquipmentsModel equipmentsModel;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -97,6 +107,14 @@ public class PlayersModel implements Serializable {
 
     public void setUser(UserModel user) {
         this.user = user;
+    }
+
+    public StatsModel getStatsModel() {
+        return statsModel;
+    }
+
+    public void setStatsModel(StatsModel statsModel) {
+        this.statsModel = statsModel;
     }
 
     public String getName() {
@@ -257,5 +275,13 @@ public class PlayersModel implements Serializable {
 
     public void setOtherProficienciesAndLanguages(String otherProficienciesAndLanguages) {
         this.otherProficienciesAndLanguages = otherProficienciesAndLanguages;
+    }
+
+    public EquipmentsModel getEquipmentsModel() {
+        return equipmentsModel;
+    }
+
+    public void setEquipmentsModel(EquipmentsModel equipmentsModel) {
+        this.equipmentsModel = equipmentsModel;
     }
 }
